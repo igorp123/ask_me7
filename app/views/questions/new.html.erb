@@ -1,3 +1,4 @@
+<h2>Создание нового вопроса</h2>
 <%= form_with model: @question do |form| %>
   <p><%= form.label :body, 'Текст вопроса' %></p>
   <p><%= form.text_area :body, rows: 5 %></p>
