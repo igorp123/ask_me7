@@ -1,19 +1,13 @@
 class QuestionsController < ApplicationController
   def create
-    question = Question.create(
-      body: params[:question][:body],
-      user_id: params[:question][:user_id]
-    )
+    question = Question.create(questions_params)
 
     redirect_to question_path(question)
   end
 
   def update
     @question = Question.find(params[:id])
-    @question.update(
-      body: params[:question][:body],
-      user_id: params[:question][:user_id]
-    )
+    @question.update(questions_params)
 
     redirect_to question_path(@question)
   end
@@ -39,5 +33,11 @@ class QuestionsController < ApplicationController
 
   def edit
     @question = Question.find(params[:id])
+  end
+
+  private
+
+  def questions_params
+    params.require(:question).permit(:body, user_id)
   end
 end
